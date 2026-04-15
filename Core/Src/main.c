@@ -54,8 +54,8 @@
 
 /* USER CODE BEGIN PV */
 
-static float target_v = 30.0f;
-static float target_i = 2.0f;
+static float target_v = 12.0f;
+static float target_i = 1.0f;
 
 
 /* USER CODE END PV */
@@ -227,15 +227,15 @@ void Key2_Pressed_Handler(void){
 	PWM_Ctrl_Set_Targets(target_v, target_i);
 }
 
-int32_t Sample_Correct_VR(int32_t theory_val){
-	return theory_val - 130000;
-}
-int32_t Sample_Correct_IR(int32_t theory_val){
-	return theory_val - 34000;
-}
-int32_t Sample_Correct_VL(int32_t theory_val){
-	return theory_val + 150000;
-}
+//int32_t Sample_Correct_VR(int32_t theory_val){
+//	return theory_val - 130000;
+//}
+//int32_t Sample_Correct_IR(int32_t theory_val){
+//	return theory_val - 34000;
+//}
+//int32_t Sample_Correct_VL(int32_t theory_val){
+//	return theory_val + 150000;
+//}
 
 //void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* hadc)
 //{   
