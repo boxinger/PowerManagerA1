@@ -30,8 +30,8 @@ extern "C" {
 #define PWM_ABS_MIN_DUTY                0.0f   // 硬件绝对下限
 
 #define PWM_LOGIC_MAX_DUTY              80.0f // 逻辑上限 (2倍升压)
-#define PWM_LOGIC_MIN_DUTY              20.0f // 逻辑下限 (0.5倍降压)
-//#define PWM_LOGIC_MIN_DUTY              0.0f // 逻辑下限 (0.5倍降压)
+//#define PWM_LOGIC_MIN_DUTY              20.0f // 逻辑下限 (0.5倍降压)
+#define PWM_LOGIC_MIN_DUTY              0.0f // 逻辑下限 (0.5倍降压)
 
 
 /* 积分跟随策略配置 */
