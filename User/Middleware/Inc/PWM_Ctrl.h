@@ -17,8 +17,8 @@ extern "C" {
 /* 阈值配置 */
 #define PWM_CTRL_VOLTAGE_THRESHOLD_V    5.0f   // 方向自动识别电压阈值 (V)
 #define PWM_SOFT_START_STEP_V           0.05f  // 软启动斜坡步进 (V/Loop, 假设10kHz, 0.05V*10000=500V/s)
-#define PWM_HARD_OVP_LIMIT_V            60.0f  // 软件级过压急停阈值 (V)
-#define PWM_HARD_OCP_LIMIT_A            6.0f   // 软件级过流急停阈值 (A)
+#define PWM_HARD_OVP_LIMIT_V            20.0f  // 软件级过压急停阈值 (V)
+#define PWM_HARD_OCP_LIMIT_A            2.0f   // 软件级过流急停阈值 (A)
 
 /* * 占空比限制策略:
  * 1. 硬件绝对限制: 防止占空比 100% 导致自举电容没电
