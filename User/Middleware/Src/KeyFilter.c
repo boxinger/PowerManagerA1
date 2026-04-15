@@ -1,7 +1,9 @@
 #include "KeyFilter.h"
+#include  "Encoder.h"
 
 void KeyFilter_Init(){
-	HAL_TIM_Base_Start_IT(KEYFILTER_TIM_HANDLE);
+    Encoder_Init();
+    HAL_TIM_Base_Start_IT(KEYFILTER_TIM_HANDLE);
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
@@ -61,13 +63,14 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
             key2_debounce_count = 0;
             key2IsPress = 0;
         }
+        int16_t value = Encoder_PopCount();
+        if (value != 0)
+        {
+            Encoder_SetValue(value);
+        }
     }
 }
 
-__weak void Key1_Pressed_Handler(void){
-	
-}
-
-__weak void Key2_Pressed_Handler(void){
-	
-}
+__weak void Key1_Pressed_Handler(void){}
+__weak void Key2_Pressed_Handler(void){	}
+__weak void Encoder_SetValue(int16_t value){}

@@ -226,6 +226,17 @@ void Key2_Pressed_Handler(void){
 	target_i += 0.1f;
 	PWM_Ctrl_Set_Targets(target_v, target_i);
 }
+void Encoder_SetValue(int16_t value){
+  float newtarget_v = target_v + (float)value * 0.1f; 
+  if (newtarget_v < 3.0f) {
+    target_v = 3.0f; // 最小电压限制
+  } else if (newtarget_v > 12.0f) {
+    target_v = 12.0f; // 最大电压限制
+  } else {
+    target_v = newtarget_v; // 每个编码器单位对应 0.1V
+  }
+  PWM_Ctrl_Set_Targets(target_v, target_i);
+}
 
 //int32_t Sample_Correct_VR(int32_t theory_val){
 //	return theory_val - 130000;

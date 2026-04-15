@@ -56,8 +56,10 @@ int16_t Encoder_PopCount(void)
 
     primask = _encoder_enter_critical();
     rawCount = (int16_t)__HAL_TIM_GET_COUNTER(&ENCODER_TIM_HANDLE);
-    count = rawCount / 4;
-    remainder = rawCount % 4;
+//    count = rawCount / 4;
+//    remainder = rawCount % 4;
+	count = rawCount / 2;
+    remainder = rawCount % 2;
     __HAL_TIM_SET_COUNTER(&ENCODER_TIM_HANDLE, (uint16_t)remainder);
     _encoder_exit_critical(primask);
 

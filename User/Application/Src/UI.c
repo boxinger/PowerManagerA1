@@ -40,10 +40,10 @@ static void UI_Load_Main_Frame(void)
 
     /* Line 4 */
 //    OLED_ShowString(COL_L_LABEL, ROW4_Y, "IM:");
-	OLED_ShowString(2*8, ROW4_Y, "V");
-	OLED_ShowString(7*8, ROW4_Y, "A");
+	OLED_ShowString(4*8, ROW4_Y, "V");
+	OLED_ShowString(9*8, ROW4_Y, "A");
 //    OLED_ShowString(COL_R_LABEL, ROW4_Y, "Dt:");
-    OLED_ShowString(COL_R_LABEL+8, ROW4_Y, "D:");
+    // OLED_ShowString(COL_R_LABEL+8, ROW4_Y, "D:");
 
 }
 
@@ -133,8 +133,8 @@ void UI_Update_Values(void)
 //	UI_Show_Raw(COL_L_VAL, ROW4_Y, Sample_Get_IM_Raw());
 //    UI_Show_Param_Float(COL_L_VAL, ROW4_Y, status->Inductor_I_A, ' ');
 //	OLED_ShowFloat(COL_L_VAL, ROW4_Y, status->Target_Voltage_V, 4, 1);
-	OLED_ShowFloat(0, ROW4_Y,status->Target_Voltage_V, 2, 0);
-	OLED_ShowFloat(4*8, ROW4_Y,status->Max_Current_Limit_A, 2, 1);
+	OLED_ShowFloat(0, ROW4_Y,status->Target_Voltage_V, 2, 1);
+	OLED_ShowFloat(6*8, ROW4_Y,status->Max_Current_Limit_A, 2, 1);
 
     /* 占空比 (整数%) */
     OLED_ShowNum(COL_R_VAL, ROW4_Y, (uint32_t)status->Final_Duty_Percent, 3);
