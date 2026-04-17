@@ -28,7 +28,8 @@ static void UI_Load_Main_Frame(void)
     /* 注意：这里不要再调用 Clear，因为 Clear 由调用者控制 */
 
     /* Line 1 */
-    OLED_ShowString(0, ROW1_Y, "DIR:");
+//    OLED_ShowString(0, ROW1_Y, "DIR:");
+	OLED_ShowString(0, ROW1_Y, "MODE:");
 
     /* Line 2 */
     OLED_ShowString(COL_L_LABEL, ROW2_Y, "VL:");
@@ -91,18 +92,23 @@ void UI_Update_Values(void)
 
     /* 3. 刷新状态栏 (Row 1) */
     if (status->RunState == PWM_CTRL_STATE_ERROR) {
-        OLED_ShowString(32, ROW1_Y, "ERROR!  ");
+        OLED_ShowString(40, ROW1_Y, "ERROR!  ");
     } else if (status->RunState == PWM_CTRL_STATE_PAUSE) {
-        OLED_ShowString(32, ROW1_Y, "STOPPED ");
+        OLED_ShowString(40, ROW1_Y, "STOPPED ");
     } else if (status->RunState == PWM_CTRL_STATE_SOFT_START){
-		OLED_ShowString(32, ROW1_Y, "SOFT ");
+		OLED_ShowString(40, ROW1_Y, "SOFT ");
 	} else {
-        if (status->Direction == PWM_CTRL_DIR_L_TO_R)
-            OLED_ShowString(32, ROW1_Y, "L -> R  ");
-        else if (status->Direction == PWM_CTRL_DIR_R_TO_L)
-            OLED_ShowString(32, ROW1_Y, "R -> L  ");
-        else
-            OLED_ShowString(32, ROW1_Y, "UNKNOWN ");
+//        if (status->Direction == PWM_CTRL_DIR_L_TO_R)
+//            OLED_ShowString(32, ROW1_Y, "L -> R  ");
+//        else if (status->Direction == PWM_CTRL_DIR_R_TO_L)
+//            OLED_ShowString(32, ROW1_Y, "R -> L  ");
+//        else
+//            OLED_ShowString(32, ROW1_Y, "UNKNOWN ");
+		if (status->Is_Current_Limited == true){
+			OLED_ShowString(40, ROW1_Y, "CC");
+		} else {
+			OLED_ShowString(40, ROW1_Y, "CV");
+		}
     }
 
     /* 显示 MCU 电压 (保持浮点显示，右上角空间足够) */

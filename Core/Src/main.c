@@ -56,6 +56,7 @@
 
 static float target_v = 12.0f;
 static float target_i = 1.0f;
+static bool setVoltage = false;
 
 
 /* USER CODE END PV */
@@ -226,15 +227,30 @@ void Key2_Pressed_Handler(void){
 	target_i += 0.1f;
 	PWM_Ctrl_Set_Targets(target_v, target_i);
 }
+void KeySW_Pressed_Handler(void){
+	setVoltage = !setVoltage;
+}
 void Encoder_SetValue(int16_t value){
-  float newtarget_v = target_v + (float)value * 0.1f; 
-  if (newtarget_v < 3.0f) {
-    target_v = 3.0f; // 最小电压限制
-  } else if (newtarget_v > 12.0f) {
-    target_v = 12.0f; // 最大电压限制
-  } else {
-    target_v = newtarget_v; // 每个编码器单位对应 0.1V
-  }
+	if(setVoltage == true){
+		float newtarget_v = target_v + (float)value * 0.1f; 
+		if (newtarget_v < 3.0f) {
+			target_v = 3.0f; // 最小电压限制
+		} else if (newtarget_v > 12.0f) {
+			target_v = 12.0f; // 最大电压限制
+		} else {
+			target_v = newtarget_v; // 每个编码器单位对应 0.1V
+		}
+	} else {
+		float newtarget_i = target_i + (float)value * 0.1f; 
+		if (newtarget_i > 1.0f) {
+			target_i = 1.0f;
+		} else if (newtarget_i < 0.5f) {
+			target_i = 0.5f;
+		} else {
+			target_i = newtarget_i;
+		}
+	}
+  
   PWM_Ctrl_Set_Targets(target_v, target_i);
 }
 
